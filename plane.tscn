@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://vabqhxgbnmjx"]
+
+[ext_resource type="Texture2D" uid="uid://cmgt6elwh56mo" path="res://textures/grass_albedo.jpg" id="2_nqs3l"]
+[ext_resource type="Script" uid="uid://bf8atfcj6xv4i" path="res://addons/camera.gd" id="3_nqs3l"]
+[ext_resource type="Shader" uid="uid://dikrrt7qc5yq2" path="res://shaders/fractal.gdshader" id="4_6xwvw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqs3l"]
+render_priority = 0
+shader = ExtResource("4_6xwvw")
+shader_parameter/tex_fractal = true
+shader_parameter/tex_albedo = ExtResource("2_nqs3l")
+shader_parameter/tex_scale = Vector2(10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s46f0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xwvw"]
+render_priority = 0
+shader = ExtResource("4_6xwvw")
+shader_parameter/tex_fractal = true
+shader_parameter/tex_albedo = ExtResource("2_nqs3l")
+shader_parameter/tex_scale = Vector2(10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nqs3l"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10000, 0, 0, 0, 10000, 0, 0, 0, 10000, -14.7775, -291.601, -19.1371)
+visible = false
+material_override = SubResource("ShaderMaterial_nqs3l")
+mesh = SubResource("PlaneMesh_s46f0")
+
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.568074, 0.822978, 0, -0.822978, 0.568074, 0, 4260.02, 0)
+fov = 59.0
+far = 1e+06
+script = ExtResource("3_nqs3l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.2876, -0.943991, -0.161763, 0.238517, -0.234172, 0.942482, -0.927575, 0.232474, 0.292506, -187.672, 1724.82, 1159.81)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(10000, 0, 0, 0, 10000, 0, 0, 0, 10000, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_6xwvw")
+mesh = SubResource("PlaneMesh_nqs3l")
